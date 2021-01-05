@@ -10,10 +10,14 @@ public class SellController {
 
 
     public void onBarcode(String barcode) {
-        Price price = catalogPrices.getPriceForBarcode(barcode);
-        if (price==null){
-            display.displayPriceNotFound(barcode);
+        if ("".equals(barcode)) {
+            display.displayEmptyBarcode();
+        } else {
+            Price price = catalogPrices.getPriceForBarcode(barcode);
+            if (price == null) {
+                display.displayPriceNotFound(barcode);
+            }
+            display.displayPrice(price);
         }
-        display.displayPrice(price);
     }
 }

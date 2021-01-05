@@ -5,8 +5,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class SellOneItemControllerTest {
@@ -42,5 +41,13 @@ class SellOneItemControllerTest {
         sellController.onBarcode("::product not found::");
 
         verify(display).displayPriceNotFound("::product not found::");
+    }
+
+    @Test
+    void emptyBarcode() {
+        sellController.onBarcode("");
+
+        verify(display).displayEmptyBarcode();
+        verifyZeroInteractions(catalogPrices);
     }
 }
