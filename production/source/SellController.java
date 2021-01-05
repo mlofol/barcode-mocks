@@ -10,6 +10,7 @@ public class SellController {
 
 
     public void onBarcode(String barcode) {
+        // SMELL Should I get an empty barcode?
         if ("".equals(barcode)) {
             display.displayEmptyBarcode();
         } else {
