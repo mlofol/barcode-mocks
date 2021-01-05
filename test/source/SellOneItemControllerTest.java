@@ -1,43 +1,46 @@
-import com.sun.org.apache.xml.internal.resolver.Catalog;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-
-import java.util.List;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class SellOneItemController {
-
-    @Mock
-    private List<Integer> list;
+class SellOneItemControllerTest {
 
     @Mock
     private Display display;
 
     @Mock
-    private CatalogPrices catalog;
+    private CatalogPrices catalogPrices;
 
     @InjectMocks
     SellController sellController;
 
     @Test
     void isThisWorking() {
-        list.add(100);
         Assertions.assertFalse(false);
     }
 
     @Test
     void productFound() {
         Price anyPrice = Price.cents(795);
-        Mockito.when(catalog.getPriceForBarcode("123456")).thenReturn(anyPrice);
+        when(catalogPrices.getPriceForBarcode("123456")).thenReturn(anyPrice);
 
         sellController.onBarcode("123456");
 
-        Mockito.verify(display).displayPrice(anyPrice);
+        verify(display).displayPrice(anyPrice);
+    }
+
+    @Test
+    void productNotFound() {
+        when(catalogPrices.getPriceForBarcode("::product not found::")).thenReturn(null);
+
+        sellController.onBarcode("::product not found::");
+
+        verify(display).displayPriceNotFound("::product not found::");
     }
 }

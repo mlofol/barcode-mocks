@@ -10,6 +10,10 @@ public class SellController {
 
 
     public void onBarcode(String barcode) {
-        display.displayPrice(catalogPrices.getPriceForBarcode(barcode));
+        Price price = catalogPrices.getPriceForBarcode(barcode);
+        if (price==null){
+            display.displayPriceNotFound(barcode);
+        }
+        display.displayPrice(price);
     }
 }
