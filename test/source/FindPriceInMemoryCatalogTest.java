@@ -10,7 +10,7 @@ public class FindPriceInMemoryCatalogTest {
         Price price = Price.cents(1250);
         InMemoryCatalog catalogPrices = new InMemoryCatalog(Collections.singletonMap("::product barcode::", price));
 
-        Price actualPrice = catalogPrices.findPrice("::product barcode::");
+        Price actualPrice = catalogPrices.getPriceForBarcode("::product barcode::");
 
         Assertions.assertEquals(price, actualPrice);
     }
@@ -19,7 +19,7 @@ public class FindPriceInMemoryCatalogTest {
     void productNotFound() {
         InMemoryCatalog catalogPrices = new InMemoryCatalog(Collections.<String, Price>emptyMap());
 
-        Price actualPrice = catalogPrices.findPrice("::product not found::");
+        Price actualPrice = catalogPrices.getPriceForBarcode("::product not found::");
 
         Assertions.assertEquals(null, actualPrice);
     }

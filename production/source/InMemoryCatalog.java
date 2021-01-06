@@ -1,6 +1,6 @@
 import java.util.Map;
 
-public class InMemoryCatalog {
+public class InMemoryCatalog implements  CatalogPrices {
 
     private final Map<String, Price> pricesByBarcode;
 
@@ -8,7 +8,9 @@ public class InMemoryCatalog {
         this.pricesByBarcode = pricesByBarcode;
     }
 
-    public Price findPrice(String barcode) {
+    public Price getPriceForBarcode(String barcode) {
         return pricesByBarcode.get(barcode);
     }
+
+
 }
