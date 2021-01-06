@@ -1,6 +1,6 @@
 import java.util.Map;
 
-public class InMemoryCatalog implements  CatalogPrices {
+public class InMemoryCatalog implements CatalogPrices {
 
     private final Map<String, Price> pricesByBarcode;
 

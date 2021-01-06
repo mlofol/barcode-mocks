@@ -8,7 +8,7 @@ public class FindPriceInMemoryCatalogTest {
     @Test
     void productFound() {
         Price price = Price.cents(1250);
-        InMemoryCatalog catalogPrices = new InMemoryCatalog(Collections.singletonMap("::product barcode::", price));
+        CatalogPrices catalogPrices = new InMemoryCatalog(Collections.singletonMap("::product barcode::", price));
 
         Price actualPrice = catalogPrices.getPriceForBarcode("::product barcode::");
 
@@ -17,7 +17,7 @@ public class FindPriceInMemoryCatalogTest {
 
     @Test
     void productNotFound() {
-        InMemoryCatalog catalogPrices = new InMemoryCatalog(Collections.<String, Price>emptyMap());
+        CatalogPrices catalogPrices = new InMemoryCatalog(Collections.<String, Price>emptyMap());
 
         Price actualPrice = catalogPrices.getPriceForBarcode("::product not found::");
 
