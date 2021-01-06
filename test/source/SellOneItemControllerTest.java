@@ -27,9 +27,9 @@ class SellOneItemControllerTest {
     @Test
     void productFound() {
         Price anyPrice = Price.cents(795);
-        when(catalogPrices.getPriceForBarcode("123456")).thenReturn(anyPrice);
+        when(catalogPrices.getPriceForBarcode("::product found::")).thenReturn(anyPrice);
 
-        sellController.onBarcode("123456");
+        sellController.onBarcode("::product found::");
 
         verify(display).displayPrice(anyPrice);
     }
