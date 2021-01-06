@@ -30,6 +30,6 @@ public class FindPriceInMemoryCatalogTest {
 
 
     private CatalogPrices catalogWithout(String barCode) {
-        return new InMemoryCatalog(Collections.<String, Price>emptyMap());
+        return new InMemoryCatalog(Collections.singletonMap("::any product different to "+barCode+" ::", Price.cents(123)));
     }
 }
