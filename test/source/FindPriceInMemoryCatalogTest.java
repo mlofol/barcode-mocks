@@ -14,4 +14,13 @@ public class FindPriceInMemoryCatalogTest {
 
         Assertions.assertEquals(price, actualPrice);
     }
+
+    @Test
+    void productNotFound() {
+        InMemoryCatalog catalogPrices = new InMemoryCatalog(Collections.<String, Price>emptyMap());
+
+        Price actualPrice = catalogPrices.findPrice("::product not found::");
+
+        Assertions.assertEquals(null, actualPrice);
+    }
 }
